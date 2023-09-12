@@ -1,0 +1,56 @@
+<!doctype html />
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Canvas Bezier curves</title>
+	<style>
+	#figure {
+		border: 1px solid navy;
+		display: block;
+		margin-bottom: 5px;
+	}
+	input[type="number"] {
+		width: 44px;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="figure" height="150" width="300">
+		This browser does not support canvas
+	</canvas>
+	
+<script>
+	function getDC() {
+		var fig = document.getElementById("figure");
+		if(fig == null) {
+			alert("Figure element not found");
+			return false;
+		}
+		if(typeof fig.getContext == "function") { 
+			return fig.getContext('2d');
+		} else {
+			alert("This browser does not support canvas");
+			return false;
+		}
+	}
+	
+	
+	function drawCurve() {
+		var dc = getDC();
+		if(dc == false) return;
+		
+		dc.beginPath();
+		dc.moveTo(150, 50);
+		dc.bezierCurveTo(90, 0, 10, 60, 150, 140);
+		dc.moveTo(150, 50);
+		dc.bezierCurveTo(210, 0, 290, 60, 150, 140);
+		dc.strokeStyle = "tomato";
+		dc.stroke();
+		dc.fillStyle = "pink";
+		dc.fill();
+	}
+	
+	drawCurve()
+</script>
+</body>
+</html>

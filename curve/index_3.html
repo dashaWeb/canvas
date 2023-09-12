@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>Canvas and images</title>
+</head>
+<body>
+    <canvas id = "figure" height = "150" width = "200">
+        This browser does not support canvas
+    </canvas>
+    <br />
+    <button onclick = "image1()">Image 1</button>
+    <button onclick = "image2()">Image 2</button>
+    <script>
+        function image1() {
+            var fig = figure.getContext('2d');
+            const pic = document.createElement('img');
+            pic.src = "step5_7.jpg";
+            fig.drawImage(pic, 0, 0, 200, 150);
+        }
+        function image2() {
+            var fig = figure.getContext('2d');
+            const pic = document.createElement('img');
+            pic.src = "step5_7.jpg";
+            pic.addEventListener('load', e => {
+                fig.drawImage(pic, 0, 0, 200, 150);
+            });
+        }
+    </script>
+</body>
+</html>

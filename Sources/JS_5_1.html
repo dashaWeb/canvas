@@ -1,0 +1,122 @@
+<!doctype html />
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>HTML figures</title>
+	<style>
+	div {
+		display: inline-block;
+	}
+	.circle, .ellipse {
+		background: lime;
+		border-radius: 50%;
+		height: 100px;
+	}
+	.circle {
+		width:  100px;
+	}
+	.ellipse {
+		width:  150px;
+	}
+	.rhombus {
+		background: aqua;
+		height: 100px;
+		width:  100px;
+		transform: rotate(45deg);
+		margin: 30px;
+	}
+	.border-demo1 {
+		border-left:  100px solid pink;
+		border-top:   100px solid navy;
+		border-right: 100px solid silver;
+		border-bottom:100px solid steelblue;
+		height: 0px;
+		width:  0px;
+		margin: 20px;
+	}
+	.border-demo2 {
+		border-left:  50px solid pink;
+		border-top:   100px solid navy;
+		border-right: 30px solid silver;
+		border-bottom:40px solid steelblue;
+		height: 0px;
+		width:  0px;
+		margin: 20px;
+	}
+	.triangle1 {
+		border-top:  100px solid gold;
+		border-left: 100px solid white;
+		border-right:100px solid white;
+		height: 0px;
+		width:  0px;
+	}
+	.triangle2 {
+		border-bottom: 100px solid tomato;
+		border-right:  100px solid white;
+		height: 0px;
+		width:  0px;
+	}
+	
+	.combo {
+		background: fuchsia;	
+		height: 100px;
+		width:  100px;
+		transform: rotate(45deg);
+		margin: 50px;
+		position: relative;
+		
+	}
+	.combo::before, .combo::after	{
+		content: "";
+		background: khaki;
+		border-radius: 50%;
+		height: 100px;
+		width:  100px;
+		opacity: 0.7;
+		position: absolute;
+	}
+	.combo::before {
+		left: -50px;
+	}
+	.combo::after {
+		top: -50px;
+	}
+	
+	.heart  {
+		background: red;
+		height: 100px;
+		width:  100px;
+		transform: rotate(45deg);
+		margin: 50px;
+		position: relative;
+	}
+	.heart::before,  .heart::after {
+		content: "";
+		background: red;
+		border-radius: 50%;
+		height: 100px;
+		width:  100px;
+		position: absolute;
+	}
+	.heart::before {
+		left: -50px;
+	}
+	.heart::after {
+		top: -50px;
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="circle"></div>
+	<div class="ellipse"></div>
+	<div class="rhombus"></div><br/>
+	<div class="border-demo1"></div>
+	<div class="border-demo2"></div>
+	<div class="triangle1"></div>
+	<div class="triangle2"></div><br/>
+	<div class="combo"></div>
+	<div class="heart"></div>
+
+</body>
+</html>

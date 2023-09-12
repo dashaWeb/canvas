@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XDM</title>
+</head>
+<body>
+<h1>XDM</h1>
+<br/>
+Recharge account for a
+<select id="payment">
+	<option value=10>day</option>
+	<option value=50>week</option>
+	<option value=200>month</option>
+</select>
+
+<button onclick="showWin2()">Pay</button>
+<p id=out></p>
+<script>
+const win2url = window.location.href.replace('.html','2.html') ;
+
+function showWin2() {
+	const selAmount = payment.value;
+	const selPeriod = payment.options[payment.selectedIndex].text;
+	const sendData = {
+		amount: selAmount,
+		period: selPeriod
+	};
+	let height = 200 ;
+	let width = 400 ;
+	let left = (window.innerWidth - width) / 2 ;
+	let top = (window.innerHeight - height) / 2 ;
+	win = window.open(win2url,"_blank", 
+	`left=${left},top=${top},width=${width},height=${height}`);
+
+	setTimeout( 
+		() => { win.postMessage(sendData,'*') },
+		100);
+	
+}
+window.addEventListener('message', xdmListener, false);
+function xdmListener(e) {
+	out.innerHTML = 
+		"Date: " + new Date() +
+		"<br/>" + "Value: " + e.data;
+}
+</script>
+</body>
+</html>

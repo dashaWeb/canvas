@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XDM</title>
+</head>
+<body>
+<h1>Pay</h1>
+<br/>
+<p>Recommended payment for a <b id="period"></b> is:</p>
+<input type="number" value=0 id="payment" />
+<button onclick="backXdm()">Done</button>
+<p id=out></p>
+<script>
+const baseWin = window.opener;
+
+window.addEventListener('message', xdmListener, false);
+function xdmListener(e) {
+	period.innerText = e.data.period;
+	payment.value = e.data.amount;
+}
+function backXdm() {
+	baseWin.postMessage(payment.value, '*');
+	baseWin.focus();
+	window.close();
+}
+</script>
+</body>
+</html>

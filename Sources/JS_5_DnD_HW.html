@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drag and drop</title>
+	<style>
+    	.circle {
+        	background: tomato;
+        	border-radius: 50%;
+        	height: 100px;        	
+        	position: absolute;
+            top: 50px;
+            width: 100px;
+        	z-index: 2;
+    	}
+        #circle1 {
+            left: 50px;
+        }
+        #circle2 {
+            right: 50px;
+        }
+        #rhomb {
+            background: tomato;
+        	height: 100px;        
+            left: 40vw;	
+        	position: absolute;
+            top: 50px;
+            transform: rotate(45deg);
+            width: 100px;
+        	z-index: 2;
+        }
+    	.combo {
+        	background: khaki;
+        	height: 100px;
+        	width: 100px;
+        	transform: rotate(45deg);
+        	top: 40vh;
+        	left: 40vw;
+        	position: absolute;
+        	z-index: 1;
+        	--before-color: khaki;
+        	--before-opacity: 0.7;
+        	--after-color: khaki;
+        	--after-opacity: 0.7;
+    	} 
+        	.combo::before, .combo::after {
+            	content: "";
+            	border-radius: 50%;
+            	height: 100px;
+            	width: 100px;
+            	position: absolute;
+        	} 
+        	.combo::before {
+            	background: var(--before-color);
+            	opacity: var(--before-opacity);
+            	left: -50px;
+        	} 
+        	.combo::after {
+            	background: var(--after-color);
+            	opacity: var(--after-opacity);
+            	top: -50px;
+        	}
+	</style>
+</head>
+<body>
+	<div ondragstart="circleDragStarts(event)">
+    	<div id="circle1" class="circle" draggable="true"></div>
+    	<div id="circle2" class="circle" draggable="true"></div>
+    	<div id="rhomb" draggable="true"></div>
+    	<div id="heart" class="combo" 
+			ondragenter="circleDragOver(event)"
+			ondragover="circleDragOver(event)"
+			ondrop="circleDrops(event)"></div>
+	</div>
+	<script>
+		var targetType = 'text/html';		
+		function circleDragStarts(event) {
+			event.dataTransfer.setData(targetType, event.target.id);
+			event.dataTransfer.effectAllowed = 'move';
+		}
+		function circleDragOver(event) {
+			event.dataTransfer.dropEffect = 'move';
+			event.preventDefault();
+		}
+		function circleDrops(event) {
+			var circleId = event.dataTransfer.getData(targetType);
+            var colorProperty, opacityProperty;
+            if( circleId == 'circle1' ) {
+                colorProperty = '--before-color';
+                opacityProperty = '--before-opacity';
+            }
+            if( circleId == 'circle2' ) {
+                colorProperty = '--after-color';
+                opacityProperty = '--after-opacity';
+            }
+            if( circleId == 'rhomb' ) {
+                colorProperty = 'background-color';
+                opacityProperty = 'opacity';
+            }
+			const circle = document.getElementById(circleId);
+			const heart = document.getElementById("heart");
+			heart.style.setProperty(colorProperty, 'tomato');
+			heart.style.setProperty(opacityProperty, '1');
+			circle.style.display = 'none';
+    	}
+	</script>
+</body>
+</html> 

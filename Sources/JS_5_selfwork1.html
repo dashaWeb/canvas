@@ -1,0 +1,63 @@
+<!doctype html />
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Canvas rectangles</title>
+	<style>
+	#figure {
+		border: 1px solid navy;
+	}
+	span {
+		display: inline-block;
+		width: 100px;
+	}
+	input[type="number"] {
+		width: 44px;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="figure" height="150" width="300">
+		This browser does not support canvas
+	</canvas>
+	
+<script>
+	function getDC() {
+		var fig = document.getElementById("figure");
+		if(fig == null) {
+			alert("Figure element not found");
+			return false;
+		}
+		if(typeof fig.getContext == "function") { 
+			return fig.getContext('2d');
+		} else {
+			alert("This browser does not support canvas");
+			return false;
+		}
+	}
+	
+	function packman() {
+		var dc = getDC();
+		if(dc == false) return;
+		
+		dc.clearRect(0, 0, 300, 150);
+		dc.strokeStyle = "navy";
+		dc.lineWidth = "2";
+		dc.fillStyle = "gold";
+		dc.beginPath();
+		dc.moveTo(150, 75);
+		dc.lineTo(200,75);
+		dc.arc(150, 75, 50, 0, 1.75 * Math.PI);
+		dc.lineTo(150,75);
+		dc.fill();
+		dc.stroke();
+		
+		dc.beginPath();		
+		dc.fillStyle = "azure";
+		dc.arc(150, 45, 7, 0, 2 * Math.PI);		
+		dc.fill();
+	}	
+	packman();
+</script>
+</body>
+</html>

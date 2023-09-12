@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drag and drop</title>
+	<style>
+    	.circle {
+        	background: tomato;
+        	border-radius: 50%;
+        	height: 100px;        	
+        	position: absolute;
+            top: 50px;
+            width: 100px;
+        	z-index: 2;
+    	}
+        #circle1 {
+            left: 50px;
+        }
+        #circle2 {
+            right: 50px;
+        }
+    	.combo {
+        	background: tomato;
+        	height: 100px;
+        	width: 100px;
+        	transform: rotate(45deg);
+        	top: 40vh;
+        	left: 45vw;
+        	position: absolute;
+        	z-index: 1;
+        	--before-color: khaki;
+        	--before-opacity: 0.7;
+        	--after-color: khaki;
+        	--after-opacity: 0.7;
+    	} 
+        	.combo::before, .combo::after {
+            	content: "";
+            	border-radius: 50%;
+            	height: 100px;
+            	width: 100px;
+            	position: absolute;
+        	} 
+        	.combo::before {
+            	background: var(--before-color);
+            	opacity: var(--before-opacity);
+            	left: -50px;
+        	} 
+        	.combo::after {
+            	background: var(--after-color);
+            	opacity: var(--after-opacity);
+            	top: -50px;
+        	}
+	</style>
+</head>
+<body>
+	<div>
+    	<div id="circle1" class="circle"></div>
+    	<div id="circle2" class="circle"></div>
+    	<div id="heart" class="combo"></div>
+	</div>
+	<script>
+
+	</script>
+</body>
+</html> 
